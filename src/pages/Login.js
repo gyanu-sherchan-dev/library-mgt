@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Row, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 import { CustomInput } from "../components/CustomInput";
 import { MainLayout } from "../components/MainLayout";
 import { getUser } from "../helpers/AxiosHelper";
 
 export const Login = () => {
+  const navigate = useNavigate();
   const inputFields = [
     {
       label: "Email",
