@@ -10,29 +10,41 @@ const app = express();
 
 const PORT = process.env.PORT || 8000;
 
+//dbconnection
+dbconnection();
+
 //middlewares
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
 
-//dbconnection
-dbconnection();
+//api routers
+import userRouter from "./src/routers/UserRouter.js";
+app.use("/api/v1/user", userRouter);
 
 //uncaught EP handler
 app.use("*", (req, res, next) => {
-  res.json({
-    status: "404",
-    message: "page not found ",
-  });
+  const error = {
+    errorCode: 404,
+    message: "page not found",
+  };
+  next(error);
 });
 
 //global handler
 app.use((error, req, res, next) => {
-  const errorCode = error.code || 500;
-  res.status(errorCode).json({
-    status: ERROR,
-    message: error.message,
-  });
+  try {
+    const errorCode = error.errorCode || 500;
+    res.status(errorCode).json({
+      status: ERROR,
+      message: error.message,
+    });
+  } catch (error) {
+    res.json({
+      status: ERROR,
+      message: error.message,
+    });
+  }
 });
 
 //server running
