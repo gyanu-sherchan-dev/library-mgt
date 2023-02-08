@@ -89,6 +89,17 @@ const Register = () => {
                   <InputField key={i} {...item} onChange={handleOnChange} />
                 ))}
 
+                <Form.Select
+                  className="mb-3"
+                  name="role"
+                  onChange={handleOnChange}
+                  required
+                >
+                  <option value="">Select</option>
+                  <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
+                </Form.Select>
+
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                   <Form.Check type="checkbox" label="I agree T&Cs " required />
                 </Form.Group>
