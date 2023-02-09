@@ -33,22 +33,17 @@ export const Login = () => {
     });
   };
 
-  const getIdFromSessionStorage = () => {
-    const sessionData = JSON.parse(sessionStorage.getItem("user"));
-    return sessionData._id;
-  };
-
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    const userId = getIdFromSessionStorage();
-    setLogin({
-      ...login,
-      _id: userId,
-    });
-    console.log(login);
-    const { status, message } = await axiosLoginUser(login);
-    toast[status](message);
+    const { status, message, result } = await axiosLoginUser(login);
+
+    if (status === "success") {
+      sessionStorage.setItem("user", JSON.stringify(result));
+      toast[status](message);
+    } else {
+      toast[status](message);
+    }
   };
   return (
     <DefaultLayout>
