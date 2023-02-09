@@ -61,16 +61,21 @@ const Register = () => {
       return alert("password do not match");
     }
 
-    const result = await axisoPostNewUser(rest);
-    const { status, message } = result;
-    toast[status](message);
+    const { status, message, result } = await axisoPostNewUser(rest);
+    console.log(result);
+    if (status === "success") {
+      sessionStorage.setItem("user", JSON.stringify(result));
+      toast[status](message);
+    } else {
+      toast[status](message);
+    }
   };
   return (
     <DefaultLayout>
       Registration
       <Container>
-        <Row className="mt-5">
-          <Col className=" md-6 p-5 reg-info  d-none d-md-block">
+        <Row className="mt-5 gap-2">
+          <Col className=" col-md-5 p-5 reg-info  d-none d-md-block">
             <div>
               <h1>Welcome to our system</h1>
               <hr />
@@ -80,7 +85,7 @@ const Register = () => {
               </p>
             </div>
           </Col>
-          <Col className="md-6 bg-info p-4 rounded-3">
+          <Col className="col-md-5  bg-info p-4 rounded-3">
             <div className=" bg-light p-4 rounded-3">
               <Form onSubmit={handleOnSubmit}>
                 <h2>Register Now</h2>

@@ -6,17 +6,11 @@
 .reg-info {
   background: url("../assests/registartion-bg.jpg") no-repeat center center;
   background-size: cover;
-  border-radius: 10px;
-  box-shadow: -5px 10px 10px;
-  margin-right: 10px;
 }
 
 .reg-info > div {
-  background: #080808db;
-  color: #fff;
-  text-align: center;
-  padding: 24px;
-  margin: auto;
+  background: rgba(0, 0, 0, 0.786);
+  color: white;
+  padding: 3rem;
   border-radius: 10px;
-  box-shadow: -10px 10px 15px;
 }

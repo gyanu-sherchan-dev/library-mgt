@@ -8,7 +8,20 @@ export const axisoPostNewUser = async (userData) => {
   try {
     const resp = await axios.post(userEP, userData);
     const { data } = resp;
-    console.log(data);
+    console.log(resp);
+    return data;
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+};
+
+export const axiosLoginUser = async (loginData) => {
+  try {
+    const result = await axios.post(userEP + "/login", loginData);
+    const { data } = result;
     return data;
   } catch (error) {
     return {
