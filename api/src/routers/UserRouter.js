@@ -1,6 +1,6 @@
 import express from "express";
 import { ERROR, SUCCESS } from "../Constant.js";
-import { createUser } from "../models/userModel/userModel.js";
+import { createUser, getUserById } from "../models/userModel/userModel.js";
 
 const router = express.Router();
 
@@ -12,6 +12,7 @@ router.post("/", async (req, res, next) => {
       ? res.json({
           status: SUCCESS,
           message: "user successfully created, you may login now",
+          result,
         })
       : res.json({
           status: ERROR,
@@ -29,15 +30,24 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.get("/", (req, res, next) => {
+//login user
+router.post("/login", async (req, res, next) => {
   try {
-    res.json({
-      status: SUCCESS,
-      message: "todo get user",
-    });
+    const { _id } = req.body;
+    console.log(_id);
+    const result = await getUserById({ _id });
+    console.log(result);
+    result?._id
+      ? res.json({
+          status: SUCCESS,
+          message: "login successful",
+        })
+      : res.json({
+          status: ERROR,
+          message: "login unsuccessful",
+        });
   } catch (error) {
     next(error);
   }
 });
-
 export default router;
