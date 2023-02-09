@@ -1,6 +1,6 @@
 import express from "express";
 import { ERROR, SUCCESS } from "../Constant.js";
-import { createUser, getUserById } from "../models/userModel/userModel.js";
+import { createUser, getAnyUser } from "../models/userModel/userModel.js";
 
 const router = express.Router();
 
@@ -33,19 +33,23 @@ router.post("/", async (req, res, next) => {
 //login user
 router.post("/login", async (req, res, next) => {
   try {
-    const { _id } = req.body;
-    console.log(_id);
-    const result = await getUserById({ _id });
+    const { email } = req.body;
+    console.log(email);
+    const result = await getAnyUser({ email });
     console.log(result);
-    result?._id
-      ? res.json({
-          status: SUCCESS,
-          message: "login successful",
-        })
-      : res.json({
-          status: ERROR,
-          message: "login unsuccessful",
-        });
+    if (result?._id) {
+      result.password = undefined;
+      return res.json({
+        status: SUCCESS,
+        message: "login successful",
+        result,
+      });
+    } else {
+      return res.json({
+        status: ERROR,
+        message: "Invalid login details",
+      });
+    }
   } catch (error) {
     next(error);
   }

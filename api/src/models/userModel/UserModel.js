@@ -9,7 +9,7 @@ export const createUser = (userData) => UserSchema(userData).save();
 export const getUserById = (_id) => UserSchema.findById(_id);
 
 //get singleUser by filter, filter must be an object
-export const getAnyUser = (filter) => UserSchema.findById(filter);
+export const getAnyUser = (filter) => UserSchema.findOne(filter);
 
 //update user, @ _id is string and @ updateData is an object
 export const updateUserById = (_id, updateData) =>
