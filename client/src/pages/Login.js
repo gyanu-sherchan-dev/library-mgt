@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { InputField } from "../components/customInputField/InputField.js";
 import { axiosLoginUser } from "../components/helpers/axiosHelper.js";
@@ -8,6 +8,7 @@ import { DefaultLayout } from "../components/layout/DefaultLayout.js";
 
 export const Login = () => {
   const [login, setLogin] = useState({});
+  const navigate = useNavigate();
   const inputs = [
     {
       label: "Email",
@@ -40,6 +41,8 @@ export const Login = () => {
 
     if (status === "success") {
       sessionStorage.setItem("user", JSON.stringify(result));
+      navigate("/books");
+
       toast[status](message);
     } else {
       toast[status](message);
