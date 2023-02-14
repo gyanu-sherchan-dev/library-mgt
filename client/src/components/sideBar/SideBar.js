@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SideBar = () => {
+const SideBar = ({ currentUser }) => {
+  console.log(currentUser);
   return (
     <div className="sidebar bg-info">
       <div className="top">
@@ -16,32 +17,36 @@ const SideBar = () => {
           <p className="title">main</p>
           <li>
             <Link to="/books" className="link">
-              <i class="fa-solid fa-book"></i>
+              <i className="fa-solid fa-book"></i>
               <span>All Books</span>
             </Link>
           </li>
           <li>
             <Link to="/" className="link">
-              <i class="fa-solid fa-book-open"></i>
+              <i className="fa-solid fa-book-open"></i>
               <span>My Books</span>
             </Link>
           </li>
-          <li>
-            <Link to="/" className="link">
-              <i class="fa-solid fa-book"></i>
-              <span>Add Book</span>
-            </Link>
-          </li>
-          <li>
-            <Link to="/" className="link">
-              <i class="fa-sharp fa-solid fa-right-left"></i>
-              <span>Transaction</span>
-            </Link>
-          </li>
+          {currentUser?.role === "teacher" && (
+            <>
+              <li>
+                <Link to="/" className="link">
+                  <i className="fa-solid fa-book"></i>
+                  <span>Add Book</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/" className="link">
+                  <i className="fa-sharp fa-solid fa-right-left"></i>
+                  <span>Transaction</span>
+                </Link>
+              </li>
+            </>
+          )}
           <p className="title">User</p>
           <li>
             <Link to="/" className="link">
-              <i class="fa-solid fa-user"></i>
+              <i className="fa-solid fa-user"></i>
               <span>Profile</span>
             </Link>
           </li>
