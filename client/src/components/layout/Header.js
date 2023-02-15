@@ -4,7 +4,8 @@ import Navbar from "react-bootstrap/Navbar";
 import { useNavigate } from "react-router-dom";
 
 export const Header = ({ currentUser }) => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
+
   const handleLogOut = () => {
     navigate("/");
     sessionStorage.removeItem("user");
@@ -20,10 +21,7 @@ export const Header = ({ currentUser }) => {
             {currentUser?._id ? (
               <div className="d-flex align-items-center gap-2">
                 Hi {currentUser.fName}
-                <Button className="" onclick={() => handleLogOut()}>
-                  {" "}
-                  Logout
-                </Button>
+                <Button onClick={() => handleLogOut()}>Logout</Button>
               </div>
             ) : (
               <>

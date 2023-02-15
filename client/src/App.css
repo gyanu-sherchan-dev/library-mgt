@@ -118,3 +118,28 @@ ul {
     display: none;
   }
 }
+
+/* Add Book */
+
+.add .add-top,
+.add-bottom {
+  margin: 20px;
+  box-shadow: 2px 4px 10px 1px rgba(128, 128, 128, 0.5);
+}
+
+.add-top {
+  padding: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  color: grey;
+}
+
+.add-bottom {
+  padding: 4rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.add-bottom label {
+  font-weight: 500;
+}

@@ -37,10 +37,10 @@ export const Login = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    const { status, message, result } = await axiosLoginUser(login);
+    const { status, message, user } = await axiosLoginUser(login);
 
     if (status === "success") {
-      sessionStorage.setItem("user", JSON.stringify(result));
+      sessionStorage.setItem("user", JSON.stringify(user));
       navigate("/books");
 
       toast[status](message);
