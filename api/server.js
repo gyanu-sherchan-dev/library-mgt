@@ -20,7 +20,10 @@ app.use(morgan("dev"));
 
 //api routers
 import userRouter from "./src/routers/UserRouter.js";
+import bookRouter from "./src/routers/BookRouter.js";
+import { isAuth } from "./src/middlewares/authMiddleware.js";
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/book", isAuth, bookRouter);
 
 //uncaught EP handler
 app.use("*", (req, res, next) => {
