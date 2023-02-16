@@ -51,7 +51,6 @@ const Register = () => {
       ...form,
       [name]: value,
     });
-    console.log(form);
   };
 
   const handleOnSubmit = async (e) => {

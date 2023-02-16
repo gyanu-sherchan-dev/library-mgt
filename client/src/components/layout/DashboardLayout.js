@@ -7,12 +7,12 @@ const DashboardLayout = ({ children }) => {
   const [user, setUser] = useState({});
   useEffect(() => {
     const u = JSON.parse(sessionStorage.getItem("user"));
-    console.log(u);
+
     if (u) {
       setUser(u);
     }
   }, []);
-  console.log(user);
+
   return (
     <div className="dashbord-layout">
       <SideBar currentUser={user} />

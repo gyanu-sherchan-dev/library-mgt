@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SideBar = ({ currentUser }) => {
-  console.log(currentUser);
   return (
     <div className="sidebar bg-info">
       <div className="top">
