@@ -13,3 +13,15 @@ export const addBook = (bookInfo) => {
 export const getAllBooks = () => {
   return BookSchema.find();
 };
+
+export const getBookById = (_id) => {
+  return BookSchema.findById(_id);
+};
+
+export const findBookAndUpdate = (_id, obj) => {
+  return BookSchema.findByIdAndUpdate(_id, obj, { new: true });
+};
+
+export const findBookAndDelete = (_id) => {
+  return BookSchema.findByIdAndDelete(_id);
+};
