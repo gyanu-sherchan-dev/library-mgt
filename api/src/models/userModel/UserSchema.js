@@ -1,36 +1,43 @@
 import mongoose from "mongoose";
-import { INACTIVE } from "../../Constant.js";
 
 const UserSchema = new mongoose.Schema(
   {
     status: {
-      type: String,
-      default: INACTIVE,
+      type: "String",
+      required: true,
+      default: "inactive",
     },
-    fName: {
-      type: String,
+    fname: {
+      type: "String",
       required: true,
     },
-    fName: {
-      type: String,
+    lname: {
+      type: "String",
       required: true,
     },
-    lName: {
-      type: String,
+    address: {
+      type: "String",
+      required: true,
+    },
+    phone: {
+      type: "Number",
       required: true,
     },
     email: {
-      type: String,
+      type: "String",
       required: true,
       unique: true,
-      index: 1,
     },
     password: {
-      type: String,
+      type: "String",
+      required: true,
+    },
+    confirmPassword: {
+      type: "String",
       required: true,
     },
     role: {
-      type: String,
+      type: "String",
       required: true,
     },
   },
@@ -39,4 +46,4 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model("LM_user", UserSchema);
+export default mongoose.model("user", UserSchema);
