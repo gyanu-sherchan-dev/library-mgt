@@ -34,14 +34,15 @@ app.use("*", (req, res, next) => {
 //global error handler
 app.use((error, req, res, next) => {
   try {
-    error = error.statusCode || 500;
-    res.status(error).json({
+    const errorCode = error.statusCode || 500;
+    res.status(errorCode).json({
       status: "error",
       message: error.message,
     });
   } catch (error) {
     res.json({
       status: "error",
+      flag: "lfjdlfjdl",
       message: error.message,
     });
   }
