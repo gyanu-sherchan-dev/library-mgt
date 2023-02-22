@@ -1,6 +1,6 @@
 import express from "express";
-import { hassPassword } from "../bcryptjs.js";
-import { createUser } from "../models/userModel/UserModel.js";
+import { comparePassword, hassPassword } from "../bcryptjs.js";
+import { createUser, loginUser } from "../models/userModel/UserModel.js";
 
 const router = express.Router();
 
@@ -29,6 +29,35 @@ router.post("/", async (req, res, next) => {
         message: "Hey please use different user details for registration",
       });
     }
+    next(error);
+  }
+});
+
+//login user
+router.post("/login", async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const result = await loginUser({ email });
+    const isPasswordMatch = comparePassword(password, result.password);
+    result.password = undefined;
+    console.log(result, isPasswordMatch);
+    if (isPasswordMatch) {
+      result?._id
+        ? res.json({
+            status: "success",
+            message: "login successful",
+            result,
+          })
+        : res.json({
+            status: "error",
+            message: "login unsuccessfull try again",
+          });
+    }
+    res.json({
+      status: "error",
+      message: "Password does not matched",
+    });
+  } catch (error) {
     next(error);
   }
 });
