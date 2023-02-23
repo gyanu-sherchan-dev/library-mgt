@@ -1,10 +1,9 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { ToastContainer } from "react-toastify";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Login } from "./pages/Login";
-import Register from "./pages/Register";
-import Books from "./pages/Books";
-import AddBook from "./pages/AddBook";
+import Login from "./components/pages/Login";
+import { ToastContainer, toast } from "react-toastify";
+
+import Register from "./components/pages/Register";
 
 function App() {
   return (
@@ -13,8 +12,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/books" element={<Books />} />
-          <Route path="/books/add" element={<AddBook />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
