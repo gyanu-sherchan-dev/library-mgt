@@ -15,7 +15,7 @@ router.post("/", async (req, res, next) => {
     console.log(result);
     result?._id
       ? res.json({
-          status: "succes",
+          status: "success",
           message: "user created",
         })
       : res.json({
@@ -37,7 +37,14 @@ router.post("/", async (req, res, next) => {
 router.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
+    console.log(email, password);
     const result = await loginUser({ email });
+    if (!result?._id) {
+      return res.json({
+        status: "error",
+        message: "email not valid",
+      });
+    }
     const isPasswordMatch = comparePassword(password, result.password);
     result.password = undefined;
     console.log(result, isPasswordMatch);

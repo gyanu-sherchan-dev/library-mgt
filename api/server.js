@@ -16,7 +16,9 @@ app.use(cors());
 
 //routers
 import userRouter from "./src/router/userRouter.js";
+import bookRouter from "./src/router/BookRouter.js";
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/books", bookRouter);
 
 //uncaught error handler
 app.use("*", (req, res, next) => {
